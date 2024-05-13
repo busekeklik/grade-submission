@@ -8,6 +8,7 @@ import java.util.ArrayList;
 // import java.util.Arrays;
 import java.util.List;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 
 
@@ -35,16 +36,37 @@ public class GradeController {
     //we want to map this request a handler method gradeForm
 
     @GetMapping("/")
-    public String gradeForm(Model model) {
-        model.addAttribute("grade", new Grade());
+    public String gradeForm(Model model, @RequestParam(required = false) String id) {
+        //Grade grade;
+        model.addAttribute("grade", getGradeIndex(id) != -1000 ? studentGrades.get(getGradeIndex(id)) : new Grade());
         return "form";
+        /*if(getGradeIndex(name) != -1000) {
+            grade = studentGrades.get(getGradeIndex(name));
+        } else {
+            grade = new Grade();
+        }
+        model.addAttribute("grade", grade); */
     }
 
     @PostMapping("/handleSubmit")
-    public String submitGrade(Grade grade) {
+    public String submitForm(Grade grade) {
+        int index = getGradeIndex(grade.getId());
         // -> debug System.out.println(grade); //Override toString()
-        studentGrades.add(grade);
+        if (index != -1000) {
+            studentGrades.set(index, grade);
+        } else{
+            studentGrades.add(grade);
+        }
         return "redirect:/grades";
+    }
+
+    public Integer getGradeIndex(String id) {
+        for (int i = 0; i < studentGrades.size(); i++) {
+            if (studentGrades.get(i).getName().equals(id)) {
+                return i;
+            }
+        }
+        return -1000; //"index not found, loose integer"
     }
     
 }
