@@ -1,5 +1,7 @@
 package com.busejavadev.gradesubmission;
 
+import java.util.UUID;
+
 //POJO class
 public class Grade {
     private String name;
@@ -14,7 +16,7 @@ public class Grade {
     }
 
     public Grade() {
-        this id = UUID.randomUUID().toString();
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getName() {

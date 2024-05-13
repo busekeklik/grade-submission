@@ -22,7 +22,7 @@
                 <td th:text="${grade.name}"></td>
                 <td th:text="${grade.subject}"></td>
                 <td th:text="${grade.score}"></td>
-                <td><a role="button" class="update" th:href="@{/(name = ${grade.id})}">Update</a></td> <!--Get request- > take me to the / page!-->
+                <td><a role="button" class="update" th:href="@{/(id = ${grade.id})}">Update</a></td> <!--Get request- > take me to the / page!-->
             </tr>
         </table>
     </div>

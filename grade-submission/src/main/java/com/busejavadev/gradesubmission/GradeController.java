@@ -62,7 +62,7 @@ public class GradeController {
 
     public Integer getGradeIndex(String id) {
         for (int i = 0; i < studentGrades.size(); i++) {
-            if (studentGrades.get(i).getName().equals(id)) {
+            if (studentGrades.get(i).getId().equals(id)) {
                 return i;
             }
         }
