@@ -14,14 +14,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
 public class GradeController {
-
-    /*
-    List<Grade> studentGrades = Arrays.asList(
-        new Grade("John Doe", "Mathematics", "A"),
-        new Grade("Jane Doe", "Mathematics", "B"),
-        new Grade("John Doe", "Physics", "C")
-    );
-     */
     
     List<Grade> studentGrades = new ArrayList<>();
 
@@ -32,27 +24,17 @@ public class GradeController {
         return "grades";
     }
 
-    //when a user makes a request on an empty path
-    //we want to map this request a handler method gradeForm
-
     @GetMapping("/")
     public String gradeForm(Model model, @RequestParam(required = false) String id) {
-        //Grade grade;
-        model.addAttribute("grade", getGradeIndex(id) != -1000 ? studentGrades.get(getGradeIndex(id)) : new Grade());
+        int index = getGradeIndex(id);
+        model.addAttribute("grade", index != Constants.NOT_FOUND ? studentGrades.get(index) : new Grade());
         return "form";
-        /*if(getGradeIndex(name) != -1000) {
-            grade = studentGrades.get(getGradeIndex(name));
-        } else {
-            grade = new Grade();
-        }
-        model.addAttribute("grade", grade); */
     }
 
     @PostMapping("/handleSubmit")
     public String submitForm(Grade grade) {
         int index = getGradeIndex(grade.getId());
-        // -> debug System.out.println(grade); //Override toString()
-        if (index != -1000) {
+        if (index != Constants.NOT_FOUND) {
             studentGrades.set(index, grade);
         } else{
             studentGrades.add(grade);
@@ -66,7 +48,7 @@ public class GradeController {
                 return i;
             }
         }
-        return -1000; //"index not found, loose integer"
+        return Constants.NOT_FOUND;
     }
     
 }
