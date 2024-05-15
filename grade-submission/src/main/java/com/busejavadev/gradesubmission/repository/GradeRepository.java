@@ -2,11 +2,15 @@ package com.busejavadev.gradesubmission.repository;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import org.springframework.stereotype.Component;
+
 import com.busejavadev.gradesubmission.pojo.Grade;
 
+@Component // now Spring boot will register a GradeRepository class as a bean
 public class GradeRepository {
 
-    private List<Grade> studentGrades = new ArrayList<>();
+    private List<Grade> studentGrades = new ArrayList<>(); //tightly coupled
 
     public Grade getGrade(int index) {
         return studentGrades.get(index);

@@ -1,5 +1,6 @@
 package com.busejavadev.gradesubmission.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -19,7 +20,12 @@ import com.busejavadev.gradesubmission.service.GradeService;
 @Controller
 public class GradeController {
 
-    GradeService gradeService = new GradeService();
+    //now, gradecontroller and gradeservice are not tightly coupled
+    //instead of creating the object directly inside the class(new ...) = tightly coupled
+    //we are injecting the object directly from the Spring container
+    //this is called dependency injection
+    @Autowired
+    GradeService gradeService;
 
     @GetMapping("/grades")
     public String getGrades(Model model) {
