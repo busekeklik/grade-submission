@@ -1,8 +1,10 @@
-package com.busejavadev.gradesubmission;
+package com.busejavadev.gradesubmission.pojo;
 
 import java.util.UUID;
 
 import javax.validation.constraints.NotBlank;
+
+import com.busejavadev.gradesubmission.Score;
 
 //POJO class
 public class Grade {
