@@ -3,13 +3,13 @@ package com.busejavadev.gradesubmission.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
 import com.busejavadev.gradesubmission.pojo.Grade;
 import com.busejavadev.gradesubmission.repository.GradeRepository;
 import com.busejavadev.gradesubmission.Constants;
 
-@Component
+@Service
 public class GradeService {
 
     // GradeRepository gradeRepository = new GradeRepository(); 
